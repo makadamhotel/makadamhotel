@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Makadam Hotel - Historic luxury accommodations in the heart of Prizren, Kosovo.">
+    <title>Makadam Hotel | Prizren</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">    
+    <style>
+        :root {
+            --burgundy: #3A0C16;
+            --cream: #F5E5AD;
+            --cream-dark: #d8c894;
+            --white: #d8c894;
+            --text-dark: #222222;
+            --nav-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height); 
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--burgundy);
+            color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Updated to the fancy hotel font */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .section-padding {
+            padding: 80px 5%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            height: var(--nav-height);
+            background-color: rgba(58, 12, 22, 0.98);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(245, 229, 173, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--cream);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1;
+            z-index: 1001;
+        }
+        
+        .logo span {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 5px;
+        }
+
+        /* FIXED LOGO ONLY */
+        .logo img {
+            height: 52px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 2px;
+            background-color: var(--cream);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(58, 12, 22, 0.65), rgba(58, 12, 22, 0.85)), 
+                        url('hoteli.jpeg') center/cover no-repeat;
+            padding: 0 5%;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            animation: fadeInDown 1.5s ease forwards;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            max-width: 600px;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            animation: fadeInUp 1.5s ease forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        .hero-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 300px;
+            animation: fadeInUp 1.5s ease forwards;
+            animation-delay: 1s;
+            opacity: 0;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: 1px solid var(--cream);
+            background: transparent;
+            color: var(--cream);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-align: center;
+            border-radius: 50px; 
+        }
+
+        .btn-primary {
+            background: var(--cream);
+            color: var(--burgundy);
+        }
+
+        .btn:hover {
+            background: var(--white);
+            border-color: var(--white);
+            color: var(--burgundy);
+        }
+
+        .rooms-bg {
+            background-color: var(--cream);
+            color: var(--burgundy);
+        }
+
+        .rooms-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2.2rem, 6vw, 3rem);
+            margin-bottom: 50px;
+        }
+
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px;
+        }
+
+        .room-card {
+            background: var(--white);
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(58, 12, 22, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(58, 12, 22, 0.15);
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 180px; 
+            overflow: hidden;
+            background-color: #eee; 
+            cursor: pointer;
+            touch-action: pan-y pinch-zoom;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, transform 0.3s ease;
+        }
+
+        .slideshow-container:hover .slide.active {
+            transform: scale(1.05); 
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .room-info {
+            padding: 15px 10px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .room-type {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--burgundy);
+        }
+
+        .massage-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .massage-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .massage-text {
+            font-size: 1.1rem;
+            color: var(--cream-dark);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- Amenities Section Moved Out of Media Query --- */
+        .amenities-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-top: 20px;
+        }
+
+        .amenity-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 130px;
+            color: var(--cream);
+            text-align: center;
+        }
+
+        .amenity-item svg {
+            width: 45px;
+            height: 45px;
+            margin-bottom: 15px;
+            stroke: var(--cream);
+            fill: none;
+            stroke-width: 1.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.4s ease;
+        }
+
+        .amenity-item:hover svg {
+            transform: translateY(-5px);
+        }
+
+        .amenity-item span {
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        @media (min-width: 1024px) {
+            .room-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 25px;
+            }
+
+            /* FIXED DESKTOP LOGO ONLY */
+            .logo img {
+                height: 90px;
+                max-width: 320px;
+            }
+
+            /* --- NEW CODE: 3x2 Grid for Amenities --- */
+            .amenities-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                justify-items: center; /* Centers the icons within their grid cells */
+                row-gap: 60px; /* Space between the two rows */
+                column-gap: 20px; /* Space between columns */
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 5%;
+            border-top: 1px solid rgba(245, 229, 173, 0.2);
+        }
+
+        .footer-logo {
+            margin-bottom: 20px; 
+            font-size: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--white);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 3, 6, 0.95);
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox.show {
+            display: flex;
+            animation: fadeInLightbox 0.3s ease forwards;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            object-fit: contain;
+            user-select: none; 
+            touch-action: none;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--cream);
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 10002;
+        }
+
+        .close-lightbox:hover {
+            color: #fff;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.4);
+            color: var(--cream);
+            border: none;
+            padding: 15px 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10001;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+        }
+
+        .prev-lightbox { left: 10px; }
+        .next-lightbox { right: 10px; }
+
+        .cookie-banner {
+            position: fixed;
+            bottom: -100%; 
+            left: 0;
+            width: 100%;
+            background-color: rgba(58, 12, 22, 0.98);
+            color: var(--cream);
+            padding: 20px 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 9999;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+            transition: bottom 0.6s cubic-bezier(0.77, 0.2, 0.05, 1);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(245, 229, 173, 0.2);
+        }
+
+        .cookie-banner.show {
+            bottom: 0;
+        }
+
+        .cookie-banner p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            margin-bottom: 15px;
+            max-width: 800px;
+        }
+
+        .cookie-btn {
+            padding: 10px 30px;
+            font-size: 12px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLightbox {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @media (min-width: 768px) {
+            .room-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            .hero-btns {
+                flex-direction: row;
+                max-width: none;
+                justify-content: center;
+                flex-wrap: wrap; 
+            }
+            .slideshow-container {
+                height: 220px;
+            }
+            .cookie-banner {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+            .cookie-banner p {
+                margin-bottom: 0;
+                padding-right: 20px;
+            }
+            .massage-image {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 0;
+                flex-direction: column;
+                background-color: var(--burgundy);
+                width: 100%;
+                height: 100vh;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 15px;
+            }
+
+            .nav-links.nav-active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+            .toggle .line2 { opacity: 0; }
+            .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+            
+            .lightbox-nav {
+                display: none !important; 
+            }
+
+            /* MOBILE LOGO KEPT CLEAN */
+            .logo img {
+                height: 50px;
+                max-width: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home" class="logo">
+    <img src="logo.png" alt="Makadam Hotel Logo">
+</a>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#rooms" class="nav-link">Rooms</a></li>
+            <li><a href="#massage" class="nav-link">Spa</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </button>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>Makadam Hotel</h1>
+        <p>Where history lives in every stone</p>
+        <div class="hero-btns">
+            <a href="https://ghs.channex.io/f113d99a-57aa-40a6-b232-11234c1f07ef" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book Now</a>
+            <a href="#rooms" class="btn">Our Rooms</a>
+            <a href="https://maps.google.com/?q=Makadam+Hotel+Prizren" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="btn">
+            Location
+            </a>        
+        </div>
+    </section>
+
+    <section id="rooms" class="section-padding rooms-bg">
+        <div class="rooms-container">
+            <h2 class="section-title reveal">Accommodations</h2>
+
+            <div class="room-grid reveal">
+                
+                <div class="room-card">
+                    <div class="slideshow-container">
+                        <img class="slide active" src="101/1.jpg" alt="Twin Single Room View 1" loading="lazy">
+                        <img class="slide" src="101/2.jpg" alt="Twin Single Room View 2" loading="lazy">
+                        <img class="slide" src="101/3.jpg" alt="Twin Single Room View 3" loading="lazy">
+                        <img class="slide" src="101/4.jpg" alt="Twin Single Room View 4" loading="lazy">
+                    </div>
+                    <div class="room-info">
+                        <div class="room-type">Twin Room with Terrace</div>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="slideshow-container">
+                        <img class="slide active" src="102/1.jpg" alt="Apartment View 1" loading="lazy">
+                        <img class="slide" src="102/2.jpg" alt="Apartment View 2" loading="lazy">
+                        <img class="slide" src="102/3.jpg" alt="Apartment View 3" loading="lazy">
+                    </div>
+                    <div class="room-info">
+                        <div class="room-type">Apartment with Terrace</div>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="slideshow-container">
+                        <img class="slide active" src="201/2.jpg" alt="Family Room View 1" loading="lazy">
+                        <img class="slide" src="201/1.jpg" alt="Family Room View 2" loading="lazy">
+                    </div>
+                    <div class="room-info">
+                        <div class="room-type">Family Room with Balcony</div>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="slideshow-container">
+                        <img class="slide active" src="203/1.jpg" alt="Economic Double View 1" loading="lazy">
+                        <img class="slide" src="203/2.jpg" alt="Economic Double View 2" loading="lazy">
+                    </div>
+                    <div class="room-info">
+                        <div class="room-type">Standard Double Room</div>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="slideshow-container">
+                        <img class="slide active" src="204/1.jpg" alt="Triple Room View 1" loading="lazy">
+                        <img class="slide" src="204/2.jpg" alt="Triple Room View 2" loading="lazy">
+                    </div>
+                    <div class="room-info">
+                        <div class="room-type">Triple Room with Balcony</div>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="slideshow-container">
+                        <img class="slide active" src="301/1.jpg" alt="Deluxe King View 1" loading="lazy">
+                        <img class="slide" src="301/2.jpg" alt="Deluxe King View 2" loading="lazy">
+                    </div>
+                    <div class="room-info">
+                        <div class="room-type">Deluxe King Room</div>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="slideshow-container">
+                        <img class="slide active" src="302_303/1.jpg" alt="Deluxe Queen View 1" loading="lazy">
+                        <img class="slide" src="302_303/2.jpg" alt="Deluxe Queen View 2" loading="lazy">
+                    </div>
+                    <div class="room-info">
+                        <div class="room-type">Deluxe Queen Room</div>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="slideshow-container">
+                        <img class="slide active" src="304/1.jpg" alt="Deluxe Room View 1" loading="lazy">
+                        <img class="slide" src="304/5.jpg" alt="Deluxe Room View 5" loading="lazy">
+                    </div>
+                    <div class="room-info">
+                        <div class="room-type">Deluxe Room</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="massage" class="section-padding">
+        <div class="massage-container reveal">
+            <h2 class="section-title" style="margin-bottom: 30px;">Massage & Wellness</h2>
+            <img class="massage-image" src="massage.png" alt="Makadam Hotel Massage Room" loading="lazy">
+            <p class="massage-text">Our private massage room offers professional physiotherapy treatments designed to restore balance, relieve tension, and enhance your overall well-being. Experience true relaxation in an intimate setting where every detail is crafted to ease stress, improve mobility, and restore your body’s natural harmony.</p>
+        </div>
+    </section>
+
+    <section id="amenities" class="section-padding" style="padding-top: 0;">
+        <div class="amenities-container reveal">
+            
+            <div class="amenity-item">
+                <svg viewBox="0 0 24 24">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <span>Gorgeous<br>City View</span>
+            </div>
+            <div class="amenity-item">
+                <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <path d="M9 17V7h4a3 3 0 0 1 0 6H9"></path>
+                </svg>
+                <span>Parking</span>
+            </div>
+
+            <div class="amenity-item">
+                <svg viewBox="0 0 24 24">
+                    <path d="M22 12h-2V6c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v6H2v4h20v-4z"></path>
+                    <path d="M6 16v4h2v-4M16 16v4h2v-4"></path>
+                </svg>
+                <span>Private<br>Bathroom</span>
+            </div>
+
+            <div class="amenity-item">
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                    <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                    <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                    <line x1="12" y1="20" x2="12.01" y2="20"></line>
+                </svg>
+                <span>Free Wi-Fi</span>
+            </div>
+
+            <div class="amenity-item">
+                <svg viewBox="0 0 24 24">
+                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                    <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"></line>
+                </svg>
+                <span>Air<br>Conditioning</span>
+            </div>
+
+            <div class="amenity-item">
+                <svg viewBox="0 0 24 24">
+                    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+                </svg>
+                <span>Housekeeping<br>- Daily -</span>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">×</span>
+        <button class="lightbox-nav prev-lightbox">❮</button>
+        <img class="lightbox-content" id="lightbox-img" alt="Enlarged Room View">
+        <button class="lightbox-nav next-lightbox">❯</button>
+    </div>
+
+    <div id="cookieBanner" class="cookie-banner">
+        <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+        <button id="acceptCookies" class="btn btn-primary cookie-btn">Accept</button>
+    </div>
+
+    <footer id="contact">
+        <a href="#home" class="logo footer-logo">
+            <img src="logo.png" alt="Makadam Hotel Logo">
+        </a>
+        <p>Shadervan, Prizren, Kosovo</p>
+        
+        <div class="social-links">
+            <a href="https://www.instagram.com/makadamhotel/" target="_blank" rel="noopener noreferrer">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                Instagram
+            </a>
+            <a href="https://wa.me/38349100868" target="_blank" rel="noopener noreferrer">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                </svg>
+                WhatsApp Message
+            </a>
+        </div>
+
+        <p style="margin-top: 20px; font-size: 0.9rem; color: var(--cream-dark);">© 2026 Makadam Hotel.</p>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const navItems = document.querySelectorAll('.nav-link');
+
+        function toggleMenu() {
+            const isActive = navLinks.classList.toggle('nav-active');
+            hamburger.classList.toggle('toggle');
+            hamburger.setAttribute('aria-expanded', isActive);
+            document.body.style.overflow = isActive ? 'hidden' : 'auto';
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+        navItems.forEach(item => item.addEventListener('click', () => {
+            if (navLinks.classList.contains('nav-active')) toggleMenu();
+        }));
+
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < window.innerHeight - 80) el.classList.add("active");
+            });
+        }
+        window.addEventListener("scroll", reveal, { passive: true });
+        reveal(); 
+
+        const slideshows = document.querySelectorAll('.slideshow-container');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeLightbox = document.querySelector('.close-lightbox');
+        const prevBtn = document.querySelector('.prev-lightbox');
+        const nextBtn = document.querySelector('.next-lightbox');
+        
+        let currentLightboxImages = [];
+        let currentLightboxIndex = 0;
+
+        slideshows.forEach(slideshow => {
+            const slides = Array.from(slideshow.querySelectorAll('.slide'));
+            let currentSlide = 0;
+            
+            if(slides.length > 1) {
+                setInterval(() => {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }, 3500);
+            }
+
+            slideshow.addEventListener('click', () => {
+                if(slides.length > 0) {
+                    currentLightboxImages = slides.map(s => s.src);
+                    const activeIndex = slides.findIndex(s => s.classList.contains('active'));
+                    currentLightboxIndex = activeIndex !== -1 ? activeIndex : 0;
+                    updateLightboxImage();
+                    lightbox.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        function updateLightboxImage() {
+            lightboxImg.src = currentLightboxImages[currentLightboxIndex];
+            const hasMultiple = currentLightboxImages.length > 1;
+            prevBtn.style.display = hasMultiple ? 'block' : 'none';
+            nextBtn.style.display = hasMultiple ? 'block' : 'none';
+        }
+
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxImages.length;
+            updateLightboxImage();
+        });
+
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxImages.length) % currentLightboxImages.length;
+            updateLightboxImage();
+        });
+
+        closeLightbox.addEventListener('click', () => {
+            lightbox.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        });
+
+        let touchstartX = 0;
+        let touchendX = 0;
+
+        lightbox.addEventListener('touchstart', e => {
+            touchstartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        lightbox.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            handleGesture();
+        }, { passive: true });
+
+        function handleGesture() {
+            if (currentLightboxImages.length <= 1) return;
+
+            if (touchendX < touchstartX - 50) {
+                currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxImages.length;
+                updateLightboxImage();
+            }
+            
+            if (touchendX > touchstartX + 50) {
+                currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxImages.length) % currentLightboxImages.length;
+                updateLightboxImage();
+            }
+        }
+
+        const cookieBanner = document.getElementById('cookieBanner');
+        const acceptBtn = document.getElementById('acceptCookies');
+
+        // Added functionality to prevent the banner from showing if already accepted
+        window.addEventListener('DOMContentLoaded', () => {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    cookieBanner.classList.add('show');
+                }, 1000); // Shows banner 1 second after page load
+            }
+        });
+
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner.classList.remove('show');
+        });
+    </script>
+</body>
+</html>
